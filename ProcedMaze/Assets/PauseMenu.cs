@@ -12,37 +12,34 @@ public class PauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (GameIsPaused)
-            {
-                Resume();
-            }
-            else
-            {
-                Pause();
-            }
-
+            Pause();
         }
 
+
     }
 
-    public void Resume ()
+    void Pause()
     {
-        pauseMenuUI.SetActive(false);
-        Time.timeScale = 1f;
-        GameIsPaused = false;
-    }
-
-    void Pause ()
-    {
+        Cursor.lockState = CursorLockMode.None;
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
     }
 
+    public void Resume()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        pauseMenuUI.SetActive(false);
+        Time.timeScale = 1f;
+        GameIsPaused = false;
+    }
+
+
+
     public void LoadMenu()
     {
-       Time.timeScale = 1f;
-       SceneManager.LoadScene("Menu");
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Menu");
     }
 
     public void QuitGame()
@@ -53,3 +50,17 @@ public class PauseMenu : MonoBehaviour
 
 
 }
+
+/*
+ *         {
+            if (GameIsPaused)
+            {
+                Resume();
+            }
+            else
+            {
+                Pause();
+            }
+
+        }
+ * */
